@@ -39,13 +39,14 @@ for ( let i = 0; i < images.length; i++) {
     carouselDom.innerHTML += imageWrapper;  
 
     const miniatureDom = `<div class="miniature">
-                                <img class="image" src="${singleImage['image']}" alt="${singleImage['title']}">
+                                <img class="imageMini" src="${singleImage['image']}" alt="${singleImage['title']}">
                         </div>`;
+    
     minContainerDom.innerHTML += miniatureDom;
 }
 
 
-imagePosition = 0
+let imagePosition = 0
 
 let divImageWrapper = document.getElementsByClassName('image-wrapper');
 divImageWrapper[imagePosition].classList.add('d-block');
@@ -62,25 +63,36 @@ btnDownDom.addEventListener('click',                         //A SALIRE
         if(imagePosition < divImageWrapper.length - 1){     //dalla 1° alla penultima img
             divImageWrapper[imagePosition].classList.remove('d-block');
             divMiniatureDom[imagePosition].classList.remove('fullOpacity');
-            //posizione x nella lista dei wrapper
             imagePosition++;
-            //aggiungo 1
             divImageWrapper[imagePosition].classList.add('d-block');
             divMiniatureDom[imagePosition].classList.add('fullOpacity');
-            //posizione x+1
 
         } else if(imagePosition = divImageWrapper.length - 1){                //ultima posizione
             divImageWrapper[imagePosition].classList.remove('d-block');
             divMiniatureDom[imagePosition].classList.remove('fullOpacity');
-            //ultima posizione nella lista dei wrapper
             imagePosition = 0
-            //posizione dell x uguale alla penultima posizone della lista wrapper
             divImageWrapper[imagePosition].classList.add('d-block');
             divMiniatureDom[imagePosition].classList.add('fullOpacity');
-            //penultima posizione nella lista dei wrapper
         }
     }
 )
+
+const caroselloATempo = setInterval(function(){
+    if(imagePosition < divImageWrapper.length - 1){     //dalla 1° alla penultima img
+        divImageWrapper[imagePosition].classList.remove('d-block');
+        divMiniatureDom[imagePosition].classList.remove('fullOpacity');
+        imagePosition++;
+        divImageWrapper[imagePosition].classList.add('d-block');
+        divMiniatureDom[imagePosition].classList.add('fullOpacity');
+
+    } else if(imagePosition = divImageWrapper.length - 1){                //ultima posizione
+        divImageWrapper[imagePosition].classList.remove('d-block');
+        divMiniatureDom[imagePosition].classList.remove('fullOpacity');
+        imagePosition = 0
+        divImageWrapper[imagePosition].classList.add('d-block');
+        divMiniatureDom[imagePosition].classList.add('fullOpacity');
+    }
+}, 3000);
 
 btnUpDom.addEventListener('click',                  //A SCENDERE
     function () {
@@ -88,22 +100,18 @@ btnUpDom.addEventListener('click',                  //A SCENDERE
         if(imagePosition > 0){                   //dalla seconda all'ultima
             divImageWrapper[imagePosition].classList.remove('d-block');
             divMiniatureDom[imagePosition].classList.remove('fullOpacity');
-            //posizione x nella lista dei wrapper
             imagePosition--;
-            // -1
             divImageWrapper[imagePosition].classList.add('d-block');
             divMiniatureDom[imagePosition].classList.add('fullOpacity');
-            //posizione x-1
             
         } else if(imagePosition == 0){                //la 1°
             divImageWrapper[imagePosition].classList.remove('d-block');
             divMiniatureDom[imagePosition].classList.remove('fullOpacity');
-            //posizione x nella lista dei wrapper
             imagePosition = divImageWrapper.length - 1
-            //posizione dell x uguale all'ultima posizone della lista wrapper
             divImageWrapper[imagePosition].classList.add('d-block');
             divMiniatureDom[imagePosition].classList.add('fullOpacity');
-            //ultima posizione nella lista dei wrapper
         }
     }
 )
+
+    
