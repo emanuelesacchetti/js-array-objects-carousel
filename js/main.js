@@ -56,28 +56,19 @@ divMiniatureDom[imagePosition].classList.add('fullOpacity');
 
 const btnUpDom = document.querySelector('#up');
 const btnDownDom = document.querySelector('#down');
+const startStopDom = document.querySelector('#startStop');
+const invertDom = document.querySelector('#invert');
+
+btnDownDom.addEventListener('click', down);
+
+btnUpDom.addEventListener('click', up)
+
+startStopDom.addEventListener('click', function(){
+            const caroselloATempo = setInterval(down, 3000);
+})
 
 
-btnDownDom.addEventListener('click',                         //A SALIRE
-    function () {
-        if(imagePosition < divImageWrapper.length - 1){     //dalla 1° alla penultima img
-            divImageWrapper[imagePosition].classList.remove('d-block');
-            divMiniatureDom[imagePosition].classList.remove('fullOpacity');
-            imagePosition++;
-            divImageWrapper[imagePosition].classList.add('d-block');
-            divMiniatureDom[imagePosition].classList.add('fullOpacity');
-
-        } else if(imagePosition = divImageWrapper.length - 1){                //ultima posizione
-            divImageWrapper[imagePosition].classList.remove('d-block');
-            divMiniatureDom[imagePosition].classList.remove('fullOpacity');
-            imagePosition = 0
-            divImageWrapper[imagePosition].classList.add('d-block');
-            divMiniatureDom[imagePosition].classList.add('fullOpacity');
-        }
-    }
-)
-
-const caroselloATempo = setInterval(function(){
+function down(){
     if(imagePosition < divImageWrapper.length - 1){     //dalla 1° alla penultima img
         divImageWrapper[imagePosition].classList.remove('d-block');
         divMiniatureDom[imagePosition].classList.remove('fullOpacity');
@@ -92,26 +83,21 @@ const caroselloATempo = setInterval(function(){
         divImageWrapper[imagePosition].classList.add('d-block');
         divMiniatureDom[imagePosition].classList.add('fullOpacity');
     }
-}, 3000);
+}
 
-btnUpDom.addEventListener('click',                  //A SCENDERE
-    function () {
+function up(){
+    if(imagePosition > 0){                   //dalla seconda all'ultima
+        divImageWrapper[imagePosition].classList.remove('d-block');
+        divMiniatureDom[imagePosition].classList.remove('fullOpacity');
+        imagePosition--;
+        divImageWrapper[imagePosition].classList.add('d-block');
+        divMiniatureDom[imagePosition].classList.add('fullOpacity');
         
-        if(imagePosition > 0){                   //dalla seconda all'ultima
-            divImageWrapper[imagePosition].classList.remove('d-block');
-            divMiniatureDom[imagePosition].classList.remove('fullOpacity');
-            imagePosition--;
-            divImageWrapper[imagePosition].classList.add('d-block');
-            divMiniatureDom[imagePosition].classList.add('fullOpacity');
-            
-        } else if(imagePosition == 0){                //la 1°
-            divImageWrapper[imagePosition].classList.remove('d-block');
-            divMiniatureDom[imagePosition].classList.remove('fullOpacity');
-            imagePosition = divImageWrapper.length - 1
-            divImageWrapper[imagePosition].classList.add('d-block');
-            divMiniatureDom[imagePosition].classList.add('fullOpacity');
-        }
+    } else if(imagePosition == 0){                //la 1°
+        divImageWrapper[imagePosition].classList.remove('d-block');
+        divMiniatureDom[imagePosition].classList.remove('fullOpacity');
+        imagePosition = divImageWrapper.length - 1
+        divImageWrapper[imagePosition].classList.add('d-block');
+        divMiniatureDom[imagePosition].classList.add('fullOpacity');
     }
-)
-
-    
+}
